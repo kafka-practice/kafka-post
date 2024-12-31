@@ -22,4 +22,4 @@ COPY --from=builder /kafka-post/build/libs/kafka-post-* /kafka-post/app.jar
 
 CMD ["sh", "-c", " \
     java -Dspring.profiles.active=${PROFILE} \
-         -jar /kafka-user/app.jar"]
+         -jar /kafka-post/app.jar"]
