@@ -38,12 +38,6 @@ public class KafkaConsumerConfig {
     @Value("${spring.kafka.properties.ssl.truststore.password}")
     private String truststorePassword;
 
-    @Value("${spring.kafka.properties.ssl.keystore.location}")
-    private String keystoreLocation;
-
-    @Value("${spring.kafka.properties.ssl.keystore.password}")
-    private String keystorePassword;
-
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -56,8 +50,6 @@ public class KafkaConsumerConfig {
         props.put("sasl.jaas.config", saslJaasConfig);
         props.put("ssl.truststore.location", truststoreLocation);
         props.put("ssl.truststore.password", truststorePassword);
-        props.put("ssl.keystore.location", keystoreLocation);
-        props.put("ssl.keystore.password", keystorePassword);
 
         return new DefaultKafkaConsumerFactory<>(props);
     }
