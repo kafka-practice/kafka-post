@@ -1,6 +1,6 @@
 # kafka-post
 
-Kafka MSA Consumer + DB 동기화 역할을 수행하는 kafka-post 프로젝트입니다.
+Kafka MSA Consumer + DB 동기화 역할을 수행하는 kafka-post 프로젝트입니다. <br>
 현재 DB 동기화까지 수행을 완료한 상태입니다.
 
 ## 🌊 이 프로젝트의 로직은 다음과 같습니다.
