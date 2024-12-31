@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "org.example.kafkapost.grpc";
+option java_outer_classname = "UserProto";
+
+service UserService {
+  rpc GetUsersById (UsersIdRequest) returns (UsersRetrieveResponse);
+}
+
+message UsersIdRequest {
+  int64 userId = 1;
+}
+
+message UsersRetrieveResponse {
+  int64 userId = 1;
+  string name = 2;
+  string nickname = 3;
+  string email = 4;
+  string password = 5;
+}

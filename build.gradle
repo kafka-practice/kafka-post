@@ -1,0 +1,96 @@
+buildscript {
+	ext {
+		protobufPluginVersion = '0.9.4'
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id 'com.google.protobuf' version "${protobufPluginVersion}"
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// DB 설정
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// mapStruct 설정
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	// kafka 설정
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '3.8.0'
+
+	// msa 로깅 Jaeger 설정 d
+	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
+	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
+
+	// grpc 프로토콜 버터를 사용하기 위한 핵심 라이브러리 (Protobuf 메시지의 직렬화 및 역직렬화를 지원합니다.)
+	implementation "com.google.protobuf:protobuf-java-util:4.28.2"
+	implementation "com.google.protobuf:protobuf-java:4.28.2"
+
+	// grpc 서버, 클라이언트 설정
+	implementation 'net.devh:grpc-spring-boot-starter:3.1.0.RELEASE' // Spring Boot와 gRPC의 통합을 간편하게 도와주는 스타터
+	implementation "io.grpc:grpc-netty-shaded:1.68.2" // Netty Shaded 사용(gRPC 서버와 클라이언트의 Netty 전송 계층을 제공)
+	implementation "io.grpc:grpc-protobuf:1.68.2"     // Protobuf 메시지와 gRPC의 통합을 지원
+	implementation "io.grpc:grpc-stub:1.68.2"         // gRPC 클라이언트 스텁을 생성
+	compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+
+	// test 설정
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation "io.grpc:grpc-testing:1.68.2"
+}
+
+// grpc 설정
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:4.28.2"
+	}
+	clean {
+		delete generatedFilesBaseDir
+	}
+	plugins {
+		grpc {
+			artifact = "io.grpc:protoc-gen-grpc-java:1.68.2"
+		}
+	}
+	generateProtoTasks {
+		all()*.plugins {
+			grpc {}
+		}
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
