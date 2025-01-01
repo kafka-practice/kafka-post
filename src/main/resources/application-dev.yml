@@ -34,8 +34,8 @@ spring:
           password: ${TRUSTSTORE_PASSWORD}
         protocol: TLSv1.3
 
-  grpc:
-    client:
-      kafka-user-service:
-        address: ${GRPC_ADDRESS}
-        negotiationType: ${GRPC_TYPE}
+grpc:
+  client:
+    kafka-user-service:
+      address: ${GRPC_ADDRESS}
+      negotiationType: ${GRPC_TYPE}
