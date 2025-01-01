@@ -36,6 +36,6 @@ spring:
 
   grpc:
     client:
-      user-grpc-server:
+      kafka-user-service:
         address: ${GRPC_ADDRESS}
         negotiationType: {GRPC_TYPE}

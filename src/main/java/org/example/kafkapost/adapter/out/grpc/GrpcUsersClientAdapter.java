@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 public class GrpcUsersClientAdapter implements GrpcUsersClientPort {
 
     // gRPC 서버에 연결하기 위한 blockingStub
-    @GrpcClient("user-grpc-server")
+    @GrpcClient("kafka-user-service")
     private UserServiceGrpc.UserServiceBlockingStub blockingStub;
 
     // gRPC 요청에서 사용할 Metadata 를 헤더로 추가하는 TextMapSetter
