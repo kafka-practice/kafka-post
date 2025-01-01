@@ -38,4 +38,4 @@ spring:
     client:
       kafka-user-service:
         address: ${GRPC_ADDRESS}
-        negotiationType: {GRPC_TYPE}
+        negotiationType: ${GRPC_TYPE}
