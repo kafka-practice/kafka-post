@@ -12,6 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.example.kafkapost.common.annotation.trace.util.TraceUtil;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 @Aspect
+@DependsOn("openTelemetry")
 public class TraceZeroPayloadKafkaPayload {
     private final Tracer tracer = GlobalOpenTelemetry.getTracer("kafka-consumer");
     private final TraceUtil traceUtil;
