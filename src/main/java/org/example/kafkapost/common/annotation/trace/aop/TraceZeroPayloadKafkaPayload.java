@@ -1,5 +1,6 @@
 package org.example.kafkapost.common.annotation.trace.aop;
 
+import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Context;
@@ -13,7 +14,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.example.kafkapost.common.annotation.trace.util.TraceUtil;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-import io.opentelemetry.api.GlobalOpenTelemetry;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -46,7 +46,7 @@ public class TraceZeroPayloadKafkaPayload {
         Context extractedContext = traceUtil.extractContextFromRecord(record);
 
         // 2. 기존 Trace 기반 새로운 Span 생성
-        Span span = tracer.spanBuilder("Content [Kafka-consume] zeroPayload gRPC call")
+        Span span = tracer.spanBuilder("kafka-post [Kafka-consume] zeroPayload gRPC call")
                 .setParent(extractedContext)
                 .startSpan();
 

@@ -39,8 +39,6 @@ public class TracingConfig {
                 .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
                 .build();
 
-        GlobalOpenTelemetry.set(openTelemetrySdk);
-
         return openTelemetrySdk;
     }
 }
