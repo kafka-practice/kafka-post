@@ -39,19 +39,19 @@ public class BaseEntity {
     @PrePersist
     public void prePersist(){
         this.createDate = LocalDateTime.now();
-        this.createCode = "kafka-user";
+        this.createCode = "kafka-post";
         this.useYn = true;
     }
 
     @PreUpdate
     public void markModified(){
         this.modifyDate = LocalDateTime.now();
-        this.modifyCode = "kafka-user";
+        this.modifyCode = "kafka-post";
     }
 
     public void markDeleted(){
         this.deleteDate = LocalDateTime.now();
-        this.deleteCode = "kafka-user";
+        this.deleteCode = "kafka-post";
         this.useYn = false;
     }
 
