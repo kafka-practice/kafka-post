@@ -10,7 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.example.kafkapost.common.annotation.trace.TraceUtil;
+import org.example.kafkapost.common.annotation.trace.util.TraceUtil;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 import io.opentelemetry.api.GlobalOpenTelemetry;

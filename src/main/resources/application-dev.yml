@@ -39,3 +39,17 @@ grpc:
     kafka-user-service:
       address: ${GRPC_ADDRESS}
       negotiationType: ${GRPC_TYPE}
+
+# msa 로깅 설정 Jaeger
+otel:
+  resource:
+    attributes:
+      service.name: ${SERVICE_NAME}
+
+
+opentelemetry:
+  tracer:
+    exporter:
+      otlp:
+        endpoint: ${OTEL_ENDPOINT}
+        protocol: ${OTEL_PROTOCOL}

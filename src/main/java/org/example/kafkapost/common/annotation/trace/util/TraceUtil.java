@@ -1,4 +1,4 @@
-package org.example.kafkapost.common.annotation.trace;
+package org.example.kafkapost.common.annotation.trace.util;
 
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanContext;
